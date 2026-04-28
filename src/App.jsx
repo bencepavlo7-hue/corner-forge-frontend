@@ -154,11 +154,6 @@ if (!Array.isArray(corners)) {
 
   useEffect(() => {
   if (view === "allCorners") {
-    fetch("https://corner-forge-backend.onrender.com/api/corners")
-  .then(res => res.json())
-  .then(data => {
-    setAllCorners(data);
-  });
       .catch(err => console.error(err));
   }
 }, [view]);
