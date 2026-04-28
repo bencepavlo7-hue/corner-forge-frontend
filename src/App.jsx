@@ -1090,7 +1090,8 @@ function CornerInput({ match, corners, setCorners, setSelectedCorner, tempVideos
   setSelectedCorner(data);
 
   // 🎥 VIDEÓK
-  for (let v of tempVideos) {
+  await Promise.all(
+  tempVideos.map(async (v) => {
     const formData = new FormData();
     formData.append("video", v.file);
 
@@ -1109,21 +1110,8 @@ function CornerInput({ match, corners, setCorners, setSelectedCorner, tempVideos
         body: JSON.stringify({ url: uploadData.url })
       }
     );
-  }
-
-  setTempVideos([]);
-  // 🔄 ALL CORNERS FRISSÍTÉS
-
-// 🔄 újratöltjük a videókat
-const resVideos = await fetch(
-  `https://corner-forge-backend.onrender.com/api/corners/${data.id}/videos`
+  })
 );
-
-const newVideos = await resVideos.json();
-
-console.log("VIDEOS AFTER SAVE:", newVideos);
-};
-
 
   return (
   <div style={styles.section}>
