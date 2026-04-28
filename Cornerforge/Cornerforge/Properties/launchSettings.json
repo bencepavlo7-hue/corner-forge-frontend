@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Cornerforge": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7153",
+      "launchBrowser": false
+    }
+  }
+}
