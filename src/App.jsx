@@ -154,6 +154,9 @@ if (!Array.isArray(corners)) {
 
   useEffect(() => {
   if (view === "allCorners") {
+    fetch("https://corner-forge-backend.onrender.com/api/corners")
+      .then(res => res.json())
+      .then(data => setAllCorners(data))
       .catch(err => console.error(err));
   }
 }, [view]);
@@ -1052,6 +1055,8 @@ function CornerInput({ match, corners, setCorners, setSelectedCorner, tempVideos
   };
 
   const saveCorner = async () => {
+  console.log("MATCH:", match);
+  console.log("MATCH ID:", match?.id);
   console.log("TEMP VIDEOS:", tempVideos);
 
   const res = await fetch(
