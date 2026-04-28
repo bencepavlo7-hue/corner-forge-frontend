@@ -155,11 +155,10 @@ if (!Array.isArray(corners)) {
   useEffect(() => {
   if (view === "allCorners") {
     fetch("https://corner-forge-backend.onrender.com/api/corners")
-      .then(res => res.json())
-      .then(data => {
-        console.log("ALL CORNERS:", data);
-        setAllCorners(data);
-      })
+  .then(res => res.json())
+  .then(data => {
+    setAllCorners(data);
+  });
       .catch(err => console.error(err));
   }
 }, [view]);
@@ -1114,11 +1113,6 @@ function CornerInput({ match, corners, setCorners, setSelectedCorner, tempVideos
 
   setTempVideos([]);
   // 🔄 ALL CORNERS FRISSÍTÉS
-fetch("https://corner-forge-backend.onrender.com/api/corners")
-  .then(res => res.json())
-  .then(data => {
-    setAllCorners(data);
-  });
 
 // 🔄 újratöltjük a videókat
 const resVideos = await fetch(
@@ -1206,7 +1200,7 @@ console.log("VIDEOS AFTER SAVE:", newVideos);
           <button
             onClick={() => {
               fetch(
-                `"https://corner-forge-backend.onrender.com/api/matches/${match.id}/corners/${c.id}`,
+                `https://corner-forge-backend.onrender.com/api/matches/${match.id}/corners/${c.id}`,
                 { method: "DELETE" }
               ).then(() => {
                 setCorners(prev => prev.filter(x => x.id !== c.id));
